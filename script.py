@@ -3,6 +3,9 @@
 
 # Global Variables
 
+from webbrowser import get
+
+
 destinations = ['Paris, France', 'Shanghai, China','Los Angeles, USA', 'São Paulo, Brazil', 'Cairo, Egypt']
 
 test_traveler = ['Erin Wilkes', 'Shanghai, China', ['historical site', 'art']]
@@ -36,6 +39,17 @@ def find_attractions(destination, interests):
     
     return attractions_with_interest
 
+def get_attractions_for_traveler(traveler):
+    traveler_name = traveler[0]
+    traveler_destination = traveler[1]
+    traveler_interests = traveler[2]
+    interests_string = ''
+    traveler_attractions = find_attractions(traveler_destination, traveler_interests)
+    interests_string = "Hi " + traveler_name + ", we think you'll like these places around " + traveler_destination +":"
+    for attraction in traveler_attractions: interests_string += '\n-  ' + attraction
+    attractions_with_interest.clear()
+    return interests_string
+
 # print(get_destination_index('Los Angeles, USA'))
 # print(get_destination_index('Paris, France'))
 # print(get_destination_index('“Hyderabad, India”'))
@@ -57,5 +71,10 @@ add_attraction("Cairo, Egypt", ["Pyramids of Giza", ["monument", "historical sit
 add_attraction("Cairo, Egypt", ["Egyptian Museum", ["museum"]])
 # print(attractions)
 
-la_arts = find_attractions("Los Angeles, USA", ['art'])
-print(la_arts)
+# la_arts = find_attractions("Los Angeles, USA", ['art'])
+# print(la_arts)
+
+smills_france = get_attractions_for_traveler(['Dereck Smill', 'Paris, France', ['monument']])
+
+print (smills_france)
+print (get_attractions_for_traveler(test_traveler))
